@@ -15,7 +15,7 @@ SORT id ASC
 | ID | Decision | Status |
 | --- | --- | --- |
 | [[ADR-0001]] | pnpm + Turborepo monorepo | accepted |
-| [[ADR-0002]] | Self-hosted JWT auth rather than a managed provider | accepted |
+| [[ADR-0002]] | Self-hosted JWT auth rather than a managed provider | superseded by [[ADR-0012]] |
 | [[ADR-0003]] | PostgreSQL with Prisma | accepted |
 | [[ADR-0004]] | Effective-dated rates with snapshotted earnings | accepted |
 | [[ADR-0005]] | One `WorkItem` table for tasks and assignments | accepted |
@@ -25,6 +25,7 @@ SORT id ASC
 | [[ADR-0009]] | Feature-sliced frontend with enforced import boundaries | accepted |
 | [[ADR-0010]] | What web and mobile share, and what they do not | accepted |
 | [[ADR-0011]] | No internationalisation layer — the product is Turkish only | accepted |
+| [[ADR-0012]] | Clerk for authentication, our database for authorization | accepted |
 
 All of these are reversible except [[ADR-0004]] and [[ADR-0008]], which get baked into historical
 data and are therefore worth arguing about now. [[ADR-0009]] is cheap to reverse on day one and

@@ -1,0 +1,23 @@
+# Local development services. Production is provisioned separately.
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: student-monitor-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: student_monitor
+      POSTGRES_PASSWORD: student_monitor
+      POSTGRES_DB: student_monitor
+    # 5433 on the host: 5432 is often already taken by a local Postgres install.
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U student_monitor -d student_monitor"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:

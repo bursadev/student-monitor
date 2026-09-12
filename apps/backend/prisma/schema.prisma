@@ -1,0 +1,44 @@
+// The single schema for the whole repo (ADR-0003). The backend owns it; anything
+// else that needs database types imports the generated client.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  runtime      = "nodejs"
+  // The backend is ESM ("type": "module"), unlike most Nest templates.
+  moduleFormat = "esm"
+}
+
+// Prisma 7 no longer accepts `url` here — the connection string lives in
+// prisma.config.ts, and the client is constructed with a driver adapter.
+datasource db {
+  provider = "postgresql"
+}
+
+/// Which of the three product roles this account is. One role per account in v1
+/// (Open Questions Q-08). Null until the user finishes onboarding.
+enum UserRole {
+  COACH
+  STUDENT
+  PARENT
+}
+
+/// Our mirror of a Clerk identity. Clerk owns authentication; this row owns
+/// everything the domain needs to hang off a user, including the role that all
+/// relationship-based authorization is drawn from (FR-02, BR-024).
+///
+/// Created just-in-time on the user's first authenticated request, never by a
+/// webhook — a webhook can be late or lost, and the user would then hit an API
+/// that has no row for them.
+model AppUser {
+  id          String    @id @default(uuid(7))
+  clerkUserId String    @unique
+  email       String?
+  displayName String?
+  role        UserRole?
+  onboardedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([role])
+}

@@ -1,10 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { Test, type TestingModule } from '@nestjs/testing';
+import type { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { App } from 'supertest/types.js';
+import type { App } from 'supertest/types.js';
+
 import { AppModule } from './../src/app.module.js';
 
-describe('AppController (e2e)', () => {
+describe('App (e2e)', () => {
   let app: INestApplication<App>;
 
   beforeEach(async () => {
@@ -13,14 +14,26 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.setGlobalPrefix('api');
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('health is public', () => {
+    return request(app.getHttpServer()).get('/api/health').expect(200).expect({ status: 'ok' });
+  });
+
+  // The guard is global and default-deny: a route with no @Public() must reject
+  // an unauthenticated caller. This is the test that fails loudly if someone
+  // ever removes APP_GUARD.
+  it('rejects an unauthenticated request to /api/me', () => {
+    return request(app.getHttpServer()).get('/api/me').expect(401);
+  });
+
+  it('rejects a malformed bearer token', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .get('/api/me')
+      .set('Authorization', 'Bearer not-a-real-token')
+      .expect(401);
   });
 
   afterEach(async () => {

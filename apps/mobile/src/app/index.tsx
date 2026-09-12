@@ -1,28 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Redirect } from 'expo-router';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
+import { useSession } from '@/features/identity';
+
+/** Entry point: decide where a launch lands once Clerk has restored the session. */
 export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Student Monitor</Text>
-      <Text style={styles.subtitle}>Edit src/app/index.tsx to get started.</Text>
-    </View>
-  );
+  const { isLoaded, isSignedIn } = useSession();
+
+  // A spinner rather than a blank screen while the keychain token is read.
+  if (!isLoaded) {
+    return (
+      <View style={styles.center}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
+  return <Redirect href={isSignedIn ? '/home' : '/sign-in'} />;
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    padding: 24,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: '600',
-  },
-  subtitle: {
-    fontSize: 14,
-    opacity: 0.6,
-  },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 });

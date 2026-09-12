@@ -90,6 +90,8 @@ pnpm dev:web                    next dev                (apps/web)
 pnpm dev:mobile                 expo start              (apps/mobile)
 
 pnpm typecheck                  tsc --noEmit in every app
+docker compose up -d            local Postgres on :5433
+pnpm --filter backend prisma:migrate   create/apply a migration
 pnpm build                      build every app
 pnpm test                       run every test suite
 
@@ -102,6 +104,25 @@ Two things that will bite you:
   `PageProps` into `.next/types`; a bare `tsc --noEmit` fails before those exist.
 - **The backend is ESM.** Relative imports need `.js` (`./app.module.js`), and a bare subpath
   import of a CJS dependency needs the extension too (`supertest/types.js`).
+- **Mobile typecheck needs the dev server to have run once.** Expo Router's typed routes are
+  generated into `.expo/types/` (gitignored), and there is no standalone typegen command in SDK 57,
+  so `tsc --noEmit` fails on a fresh clone until `pnpm dev:mobile` has started once.
+
+## Auth
+
+Clerk is the identity provider. Web uses Clerk's prebuilt components, mobile uses our own screens
+built on `useSignIn` / `useSignUp`. Details: `docs/04-Architecture/Decisions/ADR-0012 Clerk Identity.md`.
+
+- **The backend guard is global and default-deny** (`APP_GUARD` → `ClerkAuthGuard`). A new endpoint
+  is protected unless someone adds `@Public()`, which shows up in the diff.
+- **`@CurrentUser()` gives you the Clerk user id, not our row.** Call `IdentityService.ensureAppUser()`
+  when you need `AppUser.id` — the mirror is created just-in-time on first use.
+- **User creation is not webhook-driven.** A webhook can be late or lost and the user would hit an
+  API with no row for them. Webhooks are for side effects only.
+- **Never trust `role` from Clerk.** It lives in our database, because all authorization is
+  relationship-based (FR-02, BR-024) and Clerk's JWT refreshes lazily.
+- **Gate onboarding in a layout, not in middleware/proxy** — the JWT lags metadata changes by up to
+  a minute, which traps users in a redirect loop right after they submit.
 
 ## Frontend structure (web and mobile are identical)
 

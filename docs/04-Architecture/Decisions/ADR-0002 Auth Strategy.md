@@ -2,7 +2,7 @@
 id: ADR-0002
 aliases: [ADR-0002]
 title: Self-hosted JWT auth rather than a managed provider
-status: accepted
+status: superseded by ADR-0012
 date: 2026-09-12
 ---
 
@@ -10,7 +10,9 @@ date: 2026-09-12
 
 ## Status
 
-accepted
+**superseded by [[ADR-0012]]** — we adopted Clerk instead. The argument below about authorization
+being relationship-based still stands and is why authorization stayed in our own policy layer; what
+changed is the judgement that owning the *authentication* half was worth it.
 
 ## Context
 

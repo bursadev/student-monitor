@@ -6,3 +6,9 @@ packages:
 ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
+
+# Build scripts pnpm is allowed to run (pnpm 10 blocks them by default).
+onlyBuiltDependencies:
+  - prisma
+  - "@prisma/client"
+  - "@prisma/engines"

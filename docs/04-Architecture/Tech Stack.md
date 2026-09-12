@@ -24,7 +24,7 @@ updated: 2026-09-12
 | Dates & numbers | `Intl`, `tr-TR`, `Europe/Istanbul` | still required; not internationalisation |
 | Shared packages | `@sm/core`, `@sm/api` | [[ADR-0010]] |
 | Monorepo | pnpm workspaces + Turborepo | [[ADR-0001]] |
-| Auth | JWT access + rotating refresh | [[ADR-0002]] |
+| Auth | **Clerk** — `@clerk/nextjs`, `@clerk/clerk-expo`, `@clerk/backend` | [[ADR-0012]] |
 | Files | S3-compatible object storage | signed URLs only |
 | Push | Expo Push Notifications | plus web push later |
 | Testing | Vitest (unit), Supertest (API), Playwright (web e2e) | |
