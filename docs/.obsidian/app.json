@@ -1,0 +1,9 @@
+{
+  "attachmentFolderPath": "99-Archive/attachments",
+  "newFileLocation": "current",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "newLinkFormat": "shortest",
+  "showLineNumber": true,
+  "strictLineBreaks": false
+}

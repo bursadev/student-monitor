@@ -1,0 +1,39 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# builds
+dist/
+build/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# env
+.env
+.env.*
+!.env.example
+
+# native / expo
+.expo/
+*.keystore
+ios/Pods/
+
+# logs & os
+*.log
+npm-debug.log*
+.DS_Store
+
+# test output
+coverage/
+
+# obsidian local state (keep the vault, drop per-machine state)
+docs/.obsidian/workspace.json
+docs/.obsidian/workspace-mobile.json
+docs/.obsidian/cache/
+
+# This project's agent instructions are tracked deliberately.
+# The machine-global gitignore excludes **/*claude*; re-include just the root file.
+# (A repo .gitignore takes precedence over core.excludesFile.)
+!/CLAUDE.md
