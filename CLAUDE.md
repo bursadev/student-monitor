@@ -55,8 +55,11 @@ see `docs/05-Delivery/Tasks/T-001 Scaffold the monorepo.md`.
   `globals.css`, no `tailwind.config`), Turbopack.
 - **Mobile**: Expo SDK 57 + Expo Router 7 at `src/app/`, React Native 0.86, typed routes and the
   React Compiler both on.
-- **Frontend data/state** (not installed yet): SWR, Zustand, i18next, react-native-mmkv on mobile /
+- **Frontend data/state** (not installed yet): SWR, Zustand, react-native-mmkv on mobile /
   `localStorage` on web behind one storage adapter.
+- **No i18n layer.** The product is Turkish only — copy is written directly in components as string
+  literals. Dates and numbers still go through `Intl` with `tr-TR` / `Europe/Istanbul`. See
+  `docs/04-Architecture/Decisions/ADR-0011 No Internationalisation Layer.md`.
 - **Tooling**: pnpm workspaces. Turborepo and **Biome** are still to be added — the Nest scaffold
   currently ships oxlint + Prettier, which Biome replaces.
 - Node 22 locally. Locale `tr-TR`, timezone `Europe/Istanbul`, week starts Monday, currency TRY.
@@ -69,7 +72,6 @@ apps/web        Next.js web app       (coaches, parents)
 apps/mobile     Expo React Native app (students, coach quick actions)
 packages/core   domain types, enums, Zod schemas, progress + earnings rules
 packages/api    axios client, endpoint modules, SWR hooks and cache keys
-packages/i18n   tr/en catalogs, namespaced per feature
 packages/config Biome and tsconfig bases
 docs/           Obsidian vault (this is the spec)
 ```
@@ -112,7 +114,7 @@ apps/<web|mobile>/src/
   features/     identity onboarding links work progress lessons schedule exams
                 resources files notifications students billing guardians
                 subscription settings          ← named after the FR-xx areas
-  shared/       components/{ui,layout}  lib/{api,auth,storage,messaging,i18n}
+  shared/       components/{ui,layout}  lib/{api,auth,storage,messaging}
                 store/  utils/
 ```
 

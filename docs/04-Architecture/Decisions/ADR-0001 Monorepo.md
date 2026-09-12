@@ -23,7 +23,7 @@ and a version bump for every domain change — in a project where the domain is 
 One repository: `apps/backend`, `apps/web`, `apps/mobile`, and shared packages.
 
 > The shared workspace sketched here as `packages/shared` was later split and renamed —
-> `@sm/core`, `@sm/api`, `@sm/i18n` — because every app also has its own `src/shared/`.
+> `@sm/core`, `@sm/api` — because every app also has its own `src/shared/`.
 > See [[ADR-0010]].
 pnpm workspaces for linking, Turborepo for task orchestration and caching.
 

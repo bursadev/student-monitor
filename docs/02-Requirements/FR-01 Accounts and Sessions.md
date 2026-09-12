@@ -25,7 +25,7 @@ and, where required, approved.
 - **FR-01.2** The account and the coach–student / parent–student relationships are independent
   concepts. Registration never auto-links two users.
 - **FR-01.3** A user can log in, log out, and access their own account.
-- **FR-01.4** A user can view and edit their own profile (name, contact, password, locale).
+- **FR-01.4** A user can view and edit their own profile (name, contact, password).
 - **FR-01.5** A user can recover access if they forget their password.
 - **FR-01.6** Sessions survive app restarts on mobile and expire after inactivity on web. Logging
   out invalidates the refresh token.

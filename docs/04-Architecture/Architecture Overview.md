@@ -16,7 +16,7 @@ flowchart TB
     M["Mobile — Expo / React Native<br/>students, coach quick actions"]
     W["Web — Next.js App Router<br/>coaches, parents"]
   end
-  subgraph shared ["packages/ — @sm/core · @sm/api · @sm/i18n"]
+  subgraph shared ["packages/ — @sm/core · @sm/api"]
     SH["enums · Zod schemas · progress rules<br/>earnings rules · endpoints · SWR keys · copy"]
   end
   subgraph backend [apps/backend — NestJS]
@@ -98,7 +98,7 @@ PostgreSQL, accessed through Prisma. Reasons in [[ADR-0003]]. Notable choices:
 | Errors | typed error codes, translated client-side; 404 instead of 403 for invisible rows |
 | Time | UTC in the database; `Europe/Istanbul` for all business-day boundaries |
 | Money | integer minor units + currency |
-| i18n | Turkish first; keys not literals, so English is possible later |
+| Copy | Turkish string literals in components; no i18n layer ([[ADR-0011]]) |
 | Background work | bulk notifications and digests as queued jobs, not request-scoped loops |
 | Files | S3-compatible storage, short-lived signed URLs, never public objects |
 

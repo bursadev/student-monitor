@@ -23,7 +23,9 @@ potentially future contributors are English. Mixing the two arbitrarily produces
 - The client's catalog stays **verbatim in Turkish**, frozen, as the traceability source.
 - All vault notes, code identifiers, comments, commits and tests are **English**.
 - [[Glossary]] maps every domain term Turkish ↔ English ↔ code identifier and is the arbiter.
-- All user-facing copy is **Turkish**, via i18n keys — never hardcoded strings in either language.
+- All user-facing copy is **Turkish**.
+  > ~~via i18n keys — never hardcoded strings in either language.~~ Superseded by [[ADR-0011]]:
+  > the product is Turkish only, so copy is written directly in components with no i18n layer.
 - Brand terms keep their Turkish name: **Filiz** is Filiz, not `Sprout`.
 
 ## Consequences

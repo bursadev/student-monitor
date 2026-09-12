@@ -44,7 +44,7 @@ with the feature-sliced structure and its import boundaries already enforced.
 - [ ] `@sm/core` exports one enum and one Zod schema, consumed by the API **and** both apps —
       proves the wiring end to end
 - [ ] `@sm/api` axios factory + SWR provider; platform-agnostic (no `window`, no `react-native`)
-- [ ] `@sm/i18n` with i18next init and a `common` namespace in Turkish
+- ~~`@sm/i18n`~~ — dropped, the product is Turkish only ([[ADR-0011]])
 
 ### Platform isolation
 - [ ] `apps/web` has no `react-native` dependency; `apps/mobile` has no `next` dependency

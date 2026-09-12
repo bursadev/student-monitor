@@ -43,7 +43,6 @@ apps/<web|mobile>/src/
       auth/                     # auth provider, route guards
       storage/                  # platform storage adapter (MMKV | localStorage)
       messaging/                # push registration, deep links
-      i18n/                     # i18next init (catalogs live in @sm/i18n)
     store/                      # session and app-wide Zustand stores
     utils/
       date/                     # Europe/Istanbul boundaries, week start
@@ -123,7 +122,7 @@ two route paths, but the component exists once in `features/*/screens/`.
 ### Mobile — `apps/mobile/src/app/`
 
 ```
-_layout.tsx                  providers: i18n, SWR, auth, theme
+_layout.tsx                  providers: SWR, auth, theme
 (auth)/
   _layout.tsx                redirects out if already signed in
   login.tsx  register.tsx  join.tsx
@@ -246,7 +245,7 @@ repo-wide.
 | Client/UI state | **Zustand** | `features/*/store/` (local), `shared/store/` (session) |
 | Persistence | **MMKV** / `localStorage` | behind `shared/lib/storage/` |
 | Forms + validation | Zod schemas from `@sm/core` | shared with the API |
-| i18n | **i18next** | init in `shared/lib/i18n/`, catalogs in `@sm/i18n` |
+| Dates & numbers | `Intl` (`tr-TR`, `Europe/Istanbul`) | `shared/utils/date/` |
 
 **SWR conventions**
 
@@ -263,12 +262,17 @@ repo-wide.
 - Persist with `zustand/middleware` + the storage adapter, never a direct MMKV import in a feature.
 - One store per feature at most. If two features need the same state, it belongs in `shared/store/`.
 
-**i18next conventions**
+**Copy conventions**
 
-- Turkish is the source language ([[ADR-0007]]). Catalogs are namespaced per feature
-  (`work`, `lessons`, `billing`) so a feature ships its own strings.
-- Keys, never literals — including on the mobile app, where hardcoding is most tempting.
-- Turkish runs 10–20% longer than English; that is a layout constraint, not a translation detail.
+- **No i18n layer** ([[ADR-0011]]). Turkish copy is written directly in components as string
+  literals; there are no keys, no catalogues and no `@sm/i18n` package.
+- Turkish words run long and its suffixes make labels longer still — never let a layout depend on
+  short strings.
+- **Dates, times and numbers still go through `Intl`**, with `tr-TR` and `Europe/Istanbul`, in
+  `shared/utils/date/`. That is not internationalisation; hand-formatted dates are a bug in any
+  language, and business-day boundaries drive [[FR-14]] reporting.
+- If reviewing copy across the codebase starts to hurt, the cheap step is a `strings.ts` per
+  feature — centralised text, no library. See [[ADR-0011]].
 
 ## Related
 

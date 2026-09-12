@@ -55,10 +55,11 @@ student's screens as though the concept does not exist.
 The student should be able to *see* that their school hours and personal events are not shared
 ([[BR-014]]). Trust that is invisible does not build trust.
 
-**10. Turkish first.**
-Copy is written in Turkish by someone who speaks it, not translated from English strings. Turkish
-runs roughly 10–20% longer than English — design for it, and never let a layout depend on short
-labels.
+**10. Turkish, written as Turkish.**
+Copy is written directly in Turkish by someone who speaks it — there is no translation step and no
+i18n layer ([[ADR-0011]]). Turkish words run long and its suffixes make labels longer still, so
+never let a layout depend on short strings. Dates and numbers still go through `Intl` with
+`tr-TR` and `Europe/Istanbul`; hand-formatted dates are a bug in any language.
 
 ## Practical constraints
 

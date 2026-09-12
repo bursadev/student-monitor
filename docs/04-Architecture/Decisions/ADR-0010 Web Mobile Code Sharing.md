@@ -36,7 +36,6 @@ packages/
   core/     domain types, enums, Zod schemas, pure rules:
             work-item status derivation, progress + Filiz, earnings + rate resolution
   api/      axios factory, per-feature endpoint modules, SWR hooks and key factories
-  i18n/     tr / en catalogs, namespaced per feature
   config/   biome, tsconfig bases
 apps/
   web/src/{app,features,shared,assets}
@@ -59,7 +58,6 @@ What lands where, concretely:
 | Zod request/response schemas | `@sm/core` | the API validates with the same schema the client submits |
 | Status derivation, Filiz stages, earnings + rate resolution | `@sm/core` | [[ADR-0008]], [[ADR-0004]] — wrong twice is worse than wrong once |
 | Endpoint functions, SWR hooks, cache keys | `@sm/api` | the two apps call one backend |
-| Translation catalogs | `@sm/i18n` | Turkish copy written once |
 | Screens, components, navigation | the app | genuinely different products |
 | Zustand UI stores | the app | UI state is not shared state |
 | Storage, push, secure storage | the app's `src/shared/lib` | platform APIs |
