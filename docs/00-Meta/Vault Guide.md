@@ -20,6 +20,7 @@ updated: 2026-09-12
 | `FR-xx.n` | A single testable requirement | `FR-06.4` | inside the FR note |
 | `BR-xxx` | Business rule (client's `İK-xxx`) | `BR-009` | `02-Requirements/Business Rules/` |
 | `ADR-xxxx` | Architecture decision | `ADR-0003` | `04-Architecture/Decisions/` |
+| `Mx` | Delivery milestone | `M1` | [[Milestones]], [[Roadmap]] |
 | `T-xxx` | Work item | `T-004` | `05-Delivery/Tasks/` |
 | `Q-xx` | Open product question | `Q-03` | [[Open Questions]] |
 
