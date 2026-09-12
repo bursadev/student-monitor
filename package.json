@@ -1,0 +1,18 @@
+{
+  "name": "student-monitor",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Coaching platform for Turkish exam preparation (YKS / LGS)",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev:backend": "pnpm --filter backend start:dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:mobile": "pnpm --filter mobile start",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  }
+}
