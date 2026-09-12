@@ -44,7 +44,9 @@ with the feature-sliced structure and its import boundaries already enforced.
 - [ ] `@sm/core` exports one enum and one Zod schema, consumed by the API **and** both apps —
       proves the wiring end to end
 - [ ] `@sm/api` axios factory + SWR provider; platform-agnostic (no `window`, no `react-native`)
-- [ ] `@sm/i18n` with i18next init and a `common` namespace in Turkish
+- [x] `@sm/i18n` with `common` and `auth` namespaces in Turkish and English, consumed by both apps —
+      this proved the workspace wiring end to end ([[T-014]]). Needed
+      `transpilePackages` on web and a `metro.config.js` on mobile.
 
 ### Platform isolation
 - [ ] `apps/web` has no `react-native` dependency; `apps/mobile` has no `next` dependency

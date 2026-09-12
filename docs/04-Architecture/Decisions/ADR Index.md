@@ -24,6 +24,7 @@ SORT id ASC
 | [[ADR-0008]] | Derive work-item status rather than storing it | accepted |
 | [[ADR-0009]] | Feature-sliced frontend with enforced import boundaries | accepted |
 | [[ADR-0010]] | What web and mobile share, and what they do not | accepted |
+| [[ADR-0011]] | Cookie-based locale, no URL prefix | accepted |
 
 All of these are reversible except [[ADR-0004]] and [[ADR-0008]], which get baked into historical
 data and are therefore worth arguing about now. [[ADR-0009]] is cheap to reverse on day one and

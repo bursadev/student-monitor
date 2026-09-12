@@ -68,6 +68,9 @@ The current seed backlog, manually:
 - [ ] [[T-011]] Work item event history
 - [ ] [[T-012]] Event notifications
 
+### M0 — follow-ups
+- [x] [[T-014]] i18n setup on web and mobile
+
 ### Continuous
 - [ ] [[T-013]] Chase the client on [[Open Questions]]
 

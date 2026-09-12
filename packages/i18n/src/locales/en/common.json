@@ -1,0 +1,27 @@
+{
+  "appName": "Student Monitor",
+  "appDescription": "Student coaching platform",
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "retry": "Try again",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done"
+  },
+  "state": {
+    "loading": "Loading…",
+    "empty": "Nothing here yet",
+    "error": "Something went wrong"
+  },
+  "language": {
+    "label": "Language",
+    "tr": "Türkçe",
+    "en": "English"
+  },
+  "greeting": "Hello {{name}}",
+  "taskCount_one": "{{count}} task",
+  "taskCount_other": "{{count}} tasks"
+}

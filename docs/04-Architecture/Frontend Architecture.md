@@ -263,12 +263,24 @@ repo-wide.
 - Persist with `zustand/middleware` + the storage adapter, never a direct MMKV import in a feature.
 - One store per feature at most. If two features need the same state, it belongs in `shared/store/`.
 
-**i18next conventions**
+**i18next conventions** — implemented, see `packages/i18n` and each app's `shared/lib/i18n/`
 
-- Turkish is the source language ([[ADR-0007]]). Catalogs are namespaced per feature
-  (`work`, `lessons`, `billing`) so a feature ships its own strings.
-- Keys, never literals — including on the mobile app, where hardcoding is most tempting.
+- Turkish is the source language ([[ADR-0007]]). Catalogues live in `@sm/i18n`, namespaced per
+  feature (`common`, `auth`, later `work`, `lessons`, `billing`) so a feature ships its own strings.
+- Keys, never literals — including on mobile, where hardcoding is most tempting. The package
+  augments i18next's `CustomTypeOptions`, so a typo'd key is a **type error**, not a runtime
+  fallback.
+- Locale resolution: cookie → `Accept-Language` → `tr` on web; device locale → `tr` on mobile
+  ([[ADR-0011]]).
+- **On web the server and client paths differ.** `shared/lib/i18n/server.ts` builds a plain
+  i18next instance per request — no `initReactI18next`, because it registers a React context and
+  `createContext` does not exist in the server component runtime. `provider.tsx` is the client half
+  and receives the locale resolved on the server, so the first client render matches the markup.
+- A fresh instance per request on the server: i18next instances carry mutable language state, and a
+  module-level singleton would leak one request's locale into another's render.
 - Turkish runs 10–20% longer than English; that is a layout constraint, not a translation detail.
+  Plurals differ too — Turkish does not pluralise after a number (`5 görev`, not `5 görevler`),
+  which is why counts go through `t(key, { count })` rather than string concatenation.
 
 ## Related
 

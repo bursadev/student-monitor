@@ -1,0 +1,27 @@
+{
+  "appName": "Student Monitor",
+  "appDescription": "Öğrenci koçluğu platformu",
+  "actions": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "retry": "Tekrar dene",
+    "back": "Geri",
+    "next": "İleri",
+    "done": "Tamam"
+  },
+  "state": {
+    "loading": "Yükleniyor…",
+    "empty": "Henüz kayıt yok",
+    "error": "Bir hata oluştu"
+  },
+  "language": {
+    "label": "Dil",
+    "tr": "Türkçe",
+    "en": "English"
+  },
+  "greeting": "Merhaba {{name}}",
+  "taskCount_one": "{{count}} görev",
+  "taskCount_other": "{{count}} görev"
+}

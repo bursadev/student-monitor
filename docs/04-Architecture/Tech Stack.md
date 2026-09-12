@@ -20,7 +20,8 @@ updated: 2026-09-12
 | Client state | Zustand | feature-local and session stores |
 | Persistence | react-native-mmkv (mobile) / `localStorage` (web) | behind one storage adapter |
 | Secure storage | expo-secure-store (mobile) / httpOnly cookie (web) | tokens only |
-| i18n | i18next | Turkish source language ([[ADR-0007]]) |
+| i18n | i18next + react-i18next | catalogues in `@sm/i18n`, Turkish source ([[ADR-0007]], [[ADR-0011]]) |
+| Device locale (mobile) | expo-localization | works in Expo Go; no dev build needed |
 | Shared packages | `@sm/core`, `@sm/api`, `@sm/i18n` | [[ADR-0010]] |
 | Monorepo | pnpm workspaces + Turborepo | [[ADR-0001]] |
 | Auth | JWT access + rotating refresh | [[ADR-0002]] |

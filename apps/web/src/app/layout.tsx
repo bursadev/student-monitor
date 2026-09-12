@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
+
+import { I18nProvider } from "@/shared/lib/i18n/provider";
+import { getLocale, getTranslation } from "@/shared/lib/i18n/server";
+
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Student Monitor",
-  description: "Öğrenci koçluğu platformu",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getTranslation();
+  return {
+    title: t("appName"),
+    description: t("appDescription"),
+  };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = await getLocale();
+
   return (
-    <html lang="tr">
-      <body>{children}</body>
+    <html lang={locale}>
+      <body>
+        <I18nProvider locale={locale}>{children}</I18nProvider>
+      </body>
     </html>
   );
 }
