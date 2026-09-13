@@ -1,7 +1,7 @@
 ---
 title: Security and Privacy
 status: draft
-updated: 2026-09-12
+updated: 2026-09-13
 ---
 
 # Security and Privacy (incl. KVKK)
@@ -30,9 +30,10 @@ This is not legal advice — it is the checklist to take to someone who can give
 
 1. Choose an EU or Turkish hosting region and check the transfer rules **before** deploying.
 2. Capture consent at signup with a timestamp and version of the notice — it is evidence.
-3. [[BR-025]] (keep history) and the right to deletion are in tension. Resolve it deliberately:
-   anonymise the person, retain the aggregate record. Decide this before launch, not after the first
-   request.
+3. ~~[[BR-025]] (keep history) and the right to deletion are in tension.~~ **Decided 2026-09-13**
+   ([[ADR-0013]]): anonymise the person, retain the aggregate record. `DELETE /api/me` nulls the
+   personal columns and stamps `deletedAt`, then deletes the identity in Clerk. Still open: whether
+   there should be a grace period before it takes effect ([[Open Questions|Q-19]]).
 
 ## Threats specific to this product
 

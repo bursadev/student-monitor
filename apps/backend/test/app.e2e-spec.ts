@@ -36,6 +36,36 @@ describe('App (e2e)', () => {
       .expect(401);
   });
 
+  // Erasing an account is the most destructive thing the API can do, so the
+  // default-deny guard covering it is worth its own assertion.
+  it('rejects an unauthenticated account deletion', () => {
+    return request(app.getHttpServer()).delete('/api/me').expect(401);
+  });
+
+  // Whatever the failure, the body is the same two fields and the copy is
+  // Turkish. Nest's own shape would add an English `error` field here.
+  it('answers a rejected request in Turkish, in one shape', () => {
+    return request(app.getHttpServer())
+      .get('/api/me')
+      .expect(401)
+      .expect({ statusCode: 401, message: 'Oturum açılmamış.' });
+  });
+
+  it('answers an unknown route in Turkish rather than "Cannot GET"', () => {
+    return request(app.getHttpServer())
+      .get('/api/kayip-yol')
+      .expect(404)
+      .expect({ statusCode: 404, message: 'Kayıt bulunamadı.' });
+  });
+
+  it('rejects an unauthenticated onboarding submission', () => {
+    return request(app.getHttpServer())
+      .post('/api/me/onboarding')
+      .send({ role: 'STUDENT', displayName: 'Ada' })
+      .expect(401)
+      .expect({ statusCode: 401, message: 'Oturum açılmamış.' });
+  });
+
   afterEach(async () => {
     await app.close();
   });

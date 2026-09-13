@@ -1,7 +1,7 @@
 ---
 title: Open Questions
 status: open
-updated: 2026-09-12
+updated: 2026-09-13
 ---
 
 # Open Questions
@@ -18,7 +18,6 @@ placeholder noted here and come back.
 | Q-05 | What exactly can a coach "open" to a parent (§30)? A single on/off switch, or per-category toggles (progress / attendance / exams / money)? | [[FR-20]] | **open** | per-category toggles, all off by default |
 | Q-06 | File sharing: allowed formats, max size, retention, total quota per coach (§17)? | [[FR-13]] | **open** | PDF/image/office, 25 MB, kept until the coach deletes |
 | Q-07 | After a coach–student relationship ends, what can each side still see (§4.5)? History is preserved — but is it readable? | [[FR-04]] | **open** | both keep read-only access to shared history; no new writes |
-| Q-08 | Can one person hold several roles (a coach who is also a parent of another student)? | [[FR-01]] | **open** | one role per account |
 | Q-09 | Exam types to support at launch, and their net formulas for the future (§22.2) — TYT, AYT, YDT, LGS, branş denemesi? | [[FR-15]] | **open** | free-text exam type + manual net/score entry |
 | Q-10 | Subscription packages, limits and prices (§35). | [[FR-22]] | **open** | single unlimited plan, billing stubbed |
 | Q-11 | Notification channels: push, e-mail, SMS, in-app only? Quiet hours? | [[FR-16]] | **open** | in-app + push, no quiet hours |
@@ -29,10 +28,13 @@ placeholder noted here and come back.
 | Q-16 | Can a coach reject a mock exam result outright, or only leave it pending (§23)? | [[FR-15]] | **open** | `PENDING` / `APPROVED` only, as written |
 | Q-17 | What happens to pending approvals when the relationship ends? | [[FR-04]] | **open** | frozen in place, counted as not completed |
 | Q-18 | Is there any admin/support role for us as the platform operator? | [[FR-02]] | **open** | out of scope, DB access only |
+| Q-19 | Account deletion is immediate and irreversible ([[ADR-0013]]). Should there be a grace period — deactivate now, anonymise after N days — given the users are minors who may delete in anger? | [[FR-01]] | **open** | immediate, no undo |
 
 ## Answered
 
-*(move rows here with the date and who decided)*
+| ID | Question | Decided | Answer |
+| --- | --- | --- | --- |
+| Q-08 | Can one person hold several roles (a coach who is also a parent of another student)? | 2026-09-13 | **One role per account, fixed at onboarding.** A person needing two roles opens two accounts. Cheap to relax later because `role` is written in exactly one place — see [[ADR-0014]]. |
 
 ## How to use this
 

@@ -1,15 +1,23 @@
-import { getClerkUser } from '@/shared/lib/auth/permissions';
+import { fetchCurrentUser } from '@/features/identity';
+
+const ROLE_LABELS: Record<string, string> = {
+  COACH: 'Koç',
+  STUDENT: 'Öğrenci',
+  PARENT: 'Veli',
+};
 
 export default async function PanelPage() {
-  const user = await getClerkUser();
+  // The layout has already guaranteed this user exists and is onboarded.
+  const user = await fetchCurrentUser();
 
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-xl font-semibold">
-        Hoş geldin{user?.firstName ? `, ${user.firstName}` : ''}
+        Hoş geldin{user?.displayName ? `, ${user.displayName}` : ''}
       </h1>
       <p className="text-sm text-black/60 dark:text-white/60">
-        Giriş yaptın. Rol seçimi ve panel içeriği sonraki adımda gelecek.
+        {user?.role ? `${ROLE_LABELS[user.role]} olarak giriş yaptın.` : 'Giriş yaptın.'} Panel
+        içeriği sonraki adımda gelecek.
       </p>
     </div>
   );

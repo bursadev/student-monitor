@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...and we do opt in for the example: it documents which variables the app
+# needs, holds no real values, and is the only place API_URL is written down.
+!.env.example
 
 # vercel
 .vercel

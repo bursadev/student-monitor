@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@clerk/clerk-expo": "^2.20.0",
+    "@clerk/localizations": "^3.37.8",
     "@expo/ui": "~57.0.18",
     "expo": "~57.0.22",
     "expo-constants": "~57.0.18",
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "~57.0.2",
     "typescript": "~6.0.3"
   },
   "scripts": {

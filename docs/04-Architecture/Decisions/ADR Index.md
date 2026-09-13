@@ -26,6 +26,8 @@ SORT id ASC
 | [[ADR-0010]] | What web and mobile share, and what they do not | accepted |
 | [[ADR-0011]] | No internationalisation layer — the product is Turkish only | accepted |
 | [[ADR-0012]] | Clerk for authentication, our database for authorization | accepted |
+| [[ADR-0013]] | Account deletion anonymises our row, deletes the Clerk identity | accepted |
+| [[ADR-0014]] | One role per account, fixed at onboarding | accepted |
 
 All of these are reversible except [[ADR-0004]] and [[ADR-0008]], which get baked into historical
 data and are therefore worth arguing about now. [[ADR-0009]] is cheap to reverse on day one and

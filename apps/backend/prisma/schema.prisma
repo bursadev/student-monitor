@@ -37,6 +37,17 @@ model AppUser {
   displayName String?
   role        UserRole?
   onboardedAt DateTime?
+  /// Set when the user deletes their account. The row is kept and the personal
+  /// columns are nulled instead of dropping it, because history is the coaching
+  /// record (BR-025) while KVKK still grants a right to erasure — the tension
+  /// [[Security and Privacy]] resolves as "anonymise the person, retain the
+  /// aggregate record" (ADR-0013).
+  ///
+  /// `clerkUserId` deliberately stays behind: Clerk never reuses a user id, so
+  /// the unique index cannot collide with a later signup, and keeping it is what
+  /// lets IdentityService recognise and refuse a deleted account while a
+  /// still-valid JWT is in flight.
+  deletedAt   DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 

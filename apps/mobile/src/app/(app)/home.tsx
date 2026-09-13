@@ -1,7 +1,7 @@
 import { useUser } from '@clerk/clerk-expo';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { useSession } from '@/features/identity';
+import { DeleteAccountButton, useSession } from '@/features/identity';
 
 export default function Home() {
   const { user } = useUser();
@@ -20,6 +20,8 @@ export default function Home() {
       <Pressable onPress={() => void signOut()} style={styles.signOut}>
         <Text style={styles.signOutLabel}>Çıkış yap</Text>
       </Pressable>
+
+      <DeleteAccountButton />
     </View>
   );
 }

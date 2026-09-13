@@ -2,7 +2,7 @@
 id: T-015
 aliases: [T-015]
 title: Clerk authentication on web, mobile and backend
-status: review
+status: done
 milestone: M1
 area: identity
 requirements: [FR-01, FR-02]
@@ -36,11 +36,13 @@ are — with an `AppUser` row to hang the domain off.
   That is the next task, and it is where [[Open Questions|Q-08]] (can one person hold several roles?)
   has to be answered.
 - **`authorizedParties`** left off — see [[ADR-0012]] for why, and what to verify first.
-- Social sign-in (Google / Apple), account deletion, admin roles.
+- Social sign-in (Google / Apple), admin roles. *(Account deletion has since been built — see
+  [[T-016]] and [[ADR-0013]].)*
 
 ## Follow-ups
 
-- [ ] Onboarding: pick a role, set display name, stamp `onboardedAt`
-- [ ] Wire the clients to `/api/me` (an API layer with a token bridge, per [[Frontend Architecture]])
+- [x] Onboarding: pick a role, set display name, stamp `onboardedAt` — done in [[T-017]]
+- [x] Wire the clients to `/api/me` — done in [[T-016]] (mobile) and [[T-017]] (web), but with
+      hand-rolled clients rather than `@sm/api`; see the note in [[T-017]]
 - [ ] Model Clerk's per-MAU cost against a user base that is mostly free roles ([[FR-22]])
 - [ ] KVKK review of Clerk holding minors' data ([[Open Questions|Q-12]])
